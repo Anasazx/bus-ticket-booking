@@ -1,0 +1,94 @@
+<div class="schedule-container" dir="ltr">
+    <div class="schedule-header">
+      <h1>Tunisia Transport Schedule</h1>
+      <p>View bus times and schedules between Tunisian cities</p>
+    </div>
+  
+    <div class="filter-section">
+      <div class="filter-group">
+        <label for="city">City:</label>
+        <select id="city" [(ngModel)]="selectedCity" (change)="filterSchedules()">
+          <option value="">All Cities</option>
+          <option *ngFor="let city of cities" [value]="city.name">{{ city.name }}</option>
+        </select>
+      </div>
+  
+      <div class="filter-group">
+        <label for="line">Route:</label>
+        <select id="line" [(ngModel)]="selectedLine" (change)="filterSchedules()">
+          <option value="">All Routes</option>
+          <option *ngFor="let line of lines" [value]="line.name">{{ line.name }} ({{ line.from }} - {{ line.to }})</option>
+        </select>
+      </div>
+    </div>
+  
+    <div class="schedule-content">
+      <div class="schedule-list">
+        <table>
+          <thead>
+            <tr>
+              <th>Route</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Departure Time</th>
+              <th>Arrival Time</th>
+              <th>Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let schedule of filteredSchedules" 
+                (click)="showScheduleDetails(schedule)"
+                [class.selected]="selectedSchedule?.id === schedule.id">
+              <td>{{ schedule.line }}</td>
+              <td>{{ schedule.from }}</td>
+              <td>{{ schedule.to }}</td>
+              <td>{{ schedule.departure }}</td>
+              <td>{{ schedule.arrival }}</td>
+              <td>{{ schedule.price }}</td>
+            </tr>
+          </tbody>
+        </table>
+  
+        <div *ngIf="filteredSchedules.length === 0" class="no-results">
+          No matching results found
+        </div>
+      </div>
+  
+      <div class="schedule-details" *ngIf="selectedSchedule">
+        <button class="close-button" (click)="clearSelection()">×</button>
+        <h2>{{ selectedSchedule.line }}: {{ selectedSchedule.from }} → {{ selectedSchedule.to }}</h2>
+        
+        <div class="detail-row">
+          <span class="detail-label">Departure Time:</span>
+          <span class="detail-value">{{ selectedSchedule.departure }}</span>
+        </div>
+  
+        <div class="detail-row">
+          <span class="detail-label">Arrival Time:</span>
+          <span class="detail-value">{{ selectedSchedule.arrival }}</span>
+        </div>
+  
+        <div class="detail-row">
+          <span class="detail-label">Cost:</span>
+          <span class="detail-value">{{ selectedSchedule.price }}</span>
+        </div>
+  
+        <div class="detail-row">
+          <span class="detail-label">Frequency:</span>
+          <span class="detail-value">{{ selectedSchedule.frequency }}</span>
+        </div>
+  
+        <div class="stops-section">
+          <h3>Stops:</h3>
+          <ul>
+            <li *ngFor="let stop of selectedSchedule.stops">{{ stop }}</li>
+          </ul>
+        </div>
+  
+        <div class="actions">
+          <button class="print-button">Print Schedule</button>
+          <button class="share-button">Share</button>
+        </div>
+      </div>
+    </div>
+  </div>

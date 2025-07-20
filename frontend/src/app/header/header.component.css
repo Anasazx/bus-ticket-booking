@@ -1,0 +1,98 @@
+/* Professional Navbar Styling */
+.navbar {
+  padding: 0.25rem 0;
+  width: 100%;
+  z-index: 1001;
+}
+
+header {
+  width: 100%;
+  z-index: 1001;
+}
+
+.nav-link {
+  color: #495057;
+  font-size: 0.925rem;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+}
+
+.nav-link:hover {
+  color: #e30613;
+  background: rgba(227, 6, 19, 0.05);
+}
+
+.nav-active-indicator {
+  position: absolute;
+  bottom: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 16px;
+  height: 2px;
+  background: #e30613;
+  border-radius: 2px;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover .nav-active-indicator,
+.router-link-active .nav-active-indicator {
+  opacity: 1;
+  bottom: 8px;
+}
+
+.dropdown-menu {
+  min-width: 220px;
+  padding: 0.5rem 0;
+  border-radius: 8px !important;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.dropdown-item {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: rgba(227, 6, 19, 0.05);
+  color: #e30613;
+}
+
+.btn-outline-danger {
+  border-width: 1.5px;
+}
+
+.btn-sm {
+  padding: 0.35rem 1rem;
+  font-size: 0.85rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .navbar .btn {
+    width: 100%;
+    margin-bottom: 0.5rem;
+  }
+
+  .navbar .d-flex.gap-2 {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+/* Optionally reset navbar alignment on larger screens */
+@media (min-width: 769px) {
+  .navbar-nav {
+    text-align: left;
+    margin-left: auto;  /* This will push the items to the right */
+  }
+  
+  .navbar .nav-item.ms-3 {
+    margin-left: auto;  /* Ensure this margin pushes buttons to the right */
+  }
+}

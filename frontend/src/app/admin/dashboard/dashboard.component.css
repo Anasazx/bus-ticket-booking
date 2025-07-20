@@ -1,0 +1,33 @@
+.dashboard-container {
+    background-color: #f8f9fa;
+    min-height: calc(100vh - 56px); /* Adjust based on your header height */
+    min-width: max-content;
+  }
+  
+  .stat-card {
+    transition: transform 0.2s ease;
+  }
+  
+  .stat-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .stat-icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .table th {
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    color: #6c757d;
+  }
+  
+  .badge {
+    padding: 0.35em 0.65em;
+    font-weight: 500;
+  }

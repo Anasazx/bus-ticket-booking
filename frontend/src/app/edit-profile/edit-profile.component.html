@@ -1,0 +1,131 @@
+<div class="edit-profile-container">
+    <div class="profile-header">
+      <h1>Edit Profile</h1>
+      <p>Update your personal information</p>
+    </div>
+  
+    <div class="loading-section" *ngIf="isLoading">
+      <div class="spinner"></div>
+      <p>Loading your profile...</p>
+    </div>
+  
+    <div class="error-section" *ngIf="error && !isLoading">
+      <div class="error-icon">!</div>
+      <p>{{ error }}</p>
+      <button class="retry-btn" (click)="loadCurrentUser()">Retry</button>
+    </div>
+  
+    <form *ngIf="!isLoading && !error" [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="profile-form">
+      <div class="profile-image-section">
+        <div class="image-container">
+          <img [src]="profileImage || 'assets/images/default-profile.png'" alt="Profile Image" class="profile-image">
+          <div class="image-overlay" (click)="fileInput.click()">
+            <mat-icon>camera_alt</mat-icon>
+            <span>Change Photo</span>
+          </div>
+        </div>
+        <input #fileInput type="file" accept="image/*" (change)="onFileSelected($event)" style="display: none;">
+        <p class="image-hint">Click on the image to upload a new profile photo</p>
+      </div>
+  
+      <div class="form-section">
+        <h2>Personal Information</h2>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="firstName">First Name*</label>
+            <input type="text" id="firstName" formControlName="firstName" [class.invalid]="firstName?.invalid && (firstName?.dirty || firstName?.touched)">
+            <div *ngIf="firstName?.invalid && (firstName?.dirty || firstName?.touched)" class="error-message">
+              <div *ngIf="firstName?.errors?.['required']">First name is required</div>
+              <div *ngIf="firstName?.errors?.['maxlength']">First name cannot exceed 50 characters</div>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="lastName">Last Name*</label>
+            <input type="text" id="lastName" formControlName="lastName" [class.invalid]="lastName?.invalid && (lastName?.dirty || lastName?.touched)">
+            <div *ngIf="lastName?.invalid && (lastName?.dirty || lastName?.touched)" class="error-message">
+              <div *ngIf="lastName?.errors?.['required']">Last name is required</div>
+              <div *ngIf="lastName?.errors?.['maxlength']">Last name cannot exceed 50 characters</div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-row">
+          <div class="form-group">
+            <label for="email">Email*</label>
+            <input type="email" id="email" formControlName="email" [class.invalid]="email?.invalid && (email?.dirty || email?.touched)">
+            <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error-message">
+              <div *ngIf="email?.errors?.['required']">Email is required</div>
+              <div *ngIf="email?.errors?.['email']">Please enter a valid email</div>
+            </div>
+          </div>
+  
+          <div class="form-group">
+            <label for="phoneNumber">Phone Number</label>
+            <input type="tel" id="phoneNumber" formControlName="phoneNumber" [class.invalid]="phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)">
+            <div *ngIf="phoneNumber?.invalid && (phoneNumber?.dirty || phoneNumber?.touched)" class="error-message">
+              <div *ngIf="phoneNumber?.errors?.['pattern']">Please enter a valid phone number</div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="form-row">
+          <div class="form-group">
+            <label for="gender">Gender</label>
+            <select id="gender" formControlName="gender">
+              <option value="">Select Gender</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
+              <option value="other">Other</option>
+              <option value="prefer-not-to-say">Prefer not to say</option>
+            </select>
+          </div>
+  
+          <div class="form-group">
+            <label for="dateOfBirth">Date of Birth</label>
+            <input type="date" id="dateOfBirth" formControlName="dateOfBirth">
+          </div>
+        </div>
+      </div>
+  
+      <div class="form-section">
+        <h2>Address Information</h2>
+        <div class="form-group">
+          <label for="street">Street</label>
+          <input type="text" id="street" formControlName="address.street">
+        </div>
+  
+        <div class="form-row">
+          <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" formControlName="address.city">
+          </div>
+  
+          <div class="form-group">
+            <label for="state">State/Province</label>
+            <input type="text" id="state" formControlName="address.state">
+          </div>
+        </div>
+  
+        <div class="form-row">
+          <div class="form-group">
+            <label for="postalCode">Postal Code</label>
+            <input type="text" id="postalCode" formControlName="address.postalCode">
+          </div>
+  
+          <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" id="country" formControlName="address.country">
+          </div>
+        </div>
+      </div>
+  
+      <div class="form-actions">
+        <button type="button" class="secondary-btn" (click)="onCancel()" [disabled]="isSubmitting">Cancel</button>
+        <button type="submit" class="primary-btn" [disabled]="profileForm.invalid || isSubmitting">
+          <span *ngIf="!isSubmitting">Save Changes</span>
+          <span *ngIf="isSubmitting">Saving...</span>
+        </button>
+      </div>
+    </form>
+  </div>

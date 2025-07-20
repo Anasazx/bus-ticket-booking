@@ -1,0 +1,102 @@
+<div class="travel-management-container px-3 py-4">
+  <!-- Header Section -->
+  <div class="header mb-4">
+    <h2 class="fw-bold">Travel Management</h2>
+    <p class="text-muted mb-0">Manage your trips and bookings</p>
+  </div>
+
+  <!-- Search and Filter Section -->
+  <div class="card mb-4 border-0 shadow-sm">
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="searchInput" class="form-label small">Search</label>
+          <input type="text" class="form-control" id="searchInput" 
+                 [(ngModel)]="searchTerm" 
+                 placeholder="Trip ID, Destination...">
+        </div>
+        <div class="col-md-4">
+          <label for="statusFilter" class="form-label small">Status</label>
+          <select class="form-select" id="statusFilter" [(ngModel)]="statusFilter">
+            <option value="all">All Statuses</option>
+            <option value="confirmed">Confirmed</option>
+            <option value="pending">Pending</option>
+            <option value="cancelled">Cancelled</option>
+          </select>
+        </div>
+        <div class="col-md-2 d-flex align-items-end">
+            <button class="btn btn-primary w-100" (click)="applyFilter()">Filter</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trips Table Section -->
+  <div class="card border-0 shadow-sm">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead class="table-light">
+            <tr>
+              <th scope="col" class="ps-4">Trip ID</th>
+              <th scope="col">Route</th>
+              <th scope="col">Date</th>
+
+              <!-- <th scope="col">Status</th> -->
+              <th scope="col" class="text-end pe-4">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let travel of travels; trackBy: trackById">
+
+              <td class="ps-4">{{ travel._id }}</td>
+
+
+              <td>{{ travel.departure }} → {{ travel.destination }}</td>
+
+
+              <td>{{ formatDate(travel.date) }}</td>
+              <!-- <td>
+                <span class="badge" [ngClass]="getStatusClass(travel.status)">
+                  {{ travel.status | titlecase }}
+                </span>
+              </td> -->
+              <td class="text-end pe-4">
+                <button class="btn btn-sm btn-outline-primary me-1" 
+                        (click)="viewTravel(travel)">
+                  <i class="bi bi-eye"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-secondary" 
+                        (click)="editTravel(travel)">
+                  <i class="bi bi-pencil"></i>
+                </button>
+              </td>
+            </tr>
+            <!-- <tr *ngIf="filteredTravels.length === 0">
+              <td colspan="6" class="text-center py-4 text-muted">
+                No trips found matching your criteria
+              </td>
+            </tr> -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pagination Section -->
+  <div class="d-flex justify-content-end mt-3">
+    <nav aria-label="Page navigation">
+      <ul class="pagination">
+        <li class="page-item disabled">
+          <a class="page-link" href="#" tabindex="-1">Previous</a>
+        </li>
+        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>

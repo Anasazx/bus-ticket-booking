@@ -1,0 +1,18 @@
+
+.logo-class {
+    z-index: 2;
+}
+.form-select, .form-control {
+  border-radius: 0.25rem !important;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+.input-group-text {
+  background-color: transparent !important;
+}
+.btn-primary:hover {
+  background-color: #c10511 !important;
+  transform: translateY(-1px);
+}
+  

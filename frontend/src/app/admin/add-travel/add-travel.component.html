@@ -1,0 +1,138 @@
+<div class="add-travel-container p-4">
+  <div class="card shadow-sm border-0">
+    <div class="card-header bg-white border-0">
+      <h2 class="fw-bold mb-0">Add New Trip</h2>
+      <p class="text-muted">Fill in the trip details below</p>
+    </div>
+
+    <div class="card-body">
+      <form (ngSubmit)="onSubmit()" [formGroup]="travelForm">
+        <div class="row g-3">
+          <!-- Route -->
+          <div class="col-md-6">
+            <label for="from" class="form-label">From</label>
+            <select class="form-select" id="from" formControlName="from" required>
+              <option value="" disabled selected>Select departure city</option>
+              @for (city of departureCities; track city) {
+                <option [value]="city">{{city}}</option>
+              }
+            </select>
+          </div>
+
+          <div class="col-md-6">
+            <label for="to" class="form-label">To</label>
+            <select class="form-select" id="to" formControlName="to" required>
+              <option value="" disabled selected>Select destination city</option>
+              @for (city of destinationCities; track city) {
+                <option [value]="city">{{city}}</option>
+              }
+            </select>
+          </div>
+
+          <!-- Dates -->
+          <div class="col-md-6">
+            <label for="departureDate" class="form-label">Date</label>
+            <input type="date" class="form-control" id="departureDate" 
+                   formControlName="departureDate" 
+                   [min]="today"
+                   (change)="validateDates()" required>
+          </div>
+
+          <!-- Departure Time -->
+          <div class="col-md-6">
+            <label for="departureTime" class="form-label">Departure Time</label>
+            <input type="time" class="form-control" id="departureTime" formControlName="departureTime" required>
+          </div>
+
+          <!-- Arrival Time -->
+          <div class="col-md-6">
+            <label for="arrivalTime" class="form-label">Arrival Time</label>
+            <input type="time" class="form-control" id="arrivalTime" formControlName="arrivalTime" required>
+          </div>
+
+          <!-- Status -->
+          <!-- <div class="col-md-6">
+            <label for="status" class="form-label">Status</label>
+            <select class="form-select" id="status" formControlName="status">
+              @for (status of statusOptions; track status) {
+                <option [value]="status">{{status}}</option>
+              }
+            </select>
+          </div> -->
+
+          <!-- Price -->
+          <div class="col-md-6">
+            <label for="price" class="form-label">Price (TND)</label>
+            <div class="input-group">
+              <input type="number" class="form-control" id="price" 
+                     formControlName="price" min="0" step="0.01" required>
+              <span class="input-group-text">.00</span>
+            </div>
+          </div>
+
+          <!-- Available Seats -->
+          <div class="col-md-6">
+            <label for="seats" class="form-label">Available Seats</label>
+            <input type="number" class="form-control" id="seats" 
+                   formControlName="seatsAvailable" min="1" max="50" required>
+          </div>
+
+          <!-- Bus Type -->
+          <div class="col-md-6">
+            <label for="busType" class="form-label">Bus Type</label>
+            <select class="form-select" id="busType" formControlName="busType" required>
+              <option value="" disabled>Select bus type</option>
+              <option value="Standard">Standard</option>
+              <option value="Luxury">Luxury</option>
+              <option value="Mini-bus">Mini-bus</option>
+            </select>
+          </div>
+
+          <!-- Total Number of Seats -->
+          <div class="col-md-6">
+            <label for="numberOfSeats" class="form-label">Total Seats</label>
+            <input type="number" class="form-control" id="numberOfSeats" 
+                   formControlName="numberOfSeats" min="1" max="100" required>
+          </div>
+
+          <!-- Amenities -->
+          <div class="col-12">
+            <label class="form-label">Amenities</label>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="ac" value="AC" (change)="onAmenityChange($event)">
+              <label class="form-check-label" for="ac">AC</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="wc" value="WC" (change)="onAmenityChange($event)">
+              <label class="form-check-label" for="wc">WC</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="tv" value="TV" (change)="onAmenityChange($event)">
+              <label class="form-check-label" for="tv">TV</label>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="col-12">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" 
+                      formControlName="description" rows="3"></textarea>
+          </div>
+
+          <!-- Form Actions -->
+          <div class="col-12 d-flex justify-content-end gap-2 mt-4">
+            <button type="button" class="btn btn-outline-secondary" 
+                  
+                    >
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary" 
+                    [disabled]="!travelForm.valid">
+              Add Trip
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

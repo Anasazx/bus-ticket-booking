@@ -1,0 +1,53 @@
+<div class="confirmation-dialog " >
+  <h3>Confirm Your Booking</h3>
+
+  <!-- Travel Information Section -->
+  <div class="travel-info-section" *ngIf="travelInfo">
+    <h4>Travel Details</h4>
+    <div class="travel-info-grid">
+      <div class="info-item"><span class="info-label">Route:</span><span class="info-value">{{ travelInfo.departure }} → {{ travelInfo.destination }}</span></div>
+      <div class="info-item"><span class="info-label">Date:</span><span class="info-value">{{ travelInfo.date | date: 'd MMM y' }}</span></div>
+      <div class="info-item"><span class="info-label">Departure:</span><span class="info-value">{{ travelInfo.departureTime }}</span></div>
+      <!-- <div class="info-item"><span class="info-label">Arrival:</span><span class="info-value">{{ travelInfo.arrivalTime }}</span></div> -->
+      <!-- <div class="info-item"><span class="info-label">Duration:</span><span class="info-value">{{ _TravelService.calculateDuration(travelInfo.departureTime, travelInfo.arrivalTime) }}</span></div> -->
+      <div class="info-item"><span class="info-label">Bus Type:</span><span class="info-value">{{ travelInfo.busType }}</span></div>
+      <!-- <div class="info-item"><span class="info-label">Bus Number:</span><span class="info-value">{{ travelInfo.busNumber }}</span></div> -->
+    </div>
+  </div>
+
+  <!-- Booking Summary -->
+  <div class="booking-summary">
+    <h4>Your Selection</h4>
+    <p><strong>Seats:</strong> {{ seatsNumber }}</p>
+    <div class="counter" style="float: right;">
+      <!-- <button (click)="decreaseSeats()" [disabled]="seatsNumber <= 1">−</button> -->
+      <!-- <span>{{ seatsNumber }}</span> -->
+      <!-- <button (click)="increaseSeats()" [disabled]="seatsNumber >= maxSeats">+</button> -->
+    </div>
+    <p><strong>Total:</strong> {{ totalPrice }} DT</p>
+  </div>
+
+  <!-- Passenger Information -->
+  <div class="form-group">
+    <label>Passenger Name</label>
+    <input type="text" [(ngModel)]="passengerName" placeholder="Your full name">
+  </div>
+
+  <!-- Payment Method -->
+  <div class="form-group">
+    <label>Payment Method</label>
+    <select [(ngModel)]="paymentMethod">
+      <option value="credit">Credit Card</option>
+      <option value="paypal">PayPal</option>
+      <option value="wallet">Digital Wallet</option>
+    </select>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <button class="btn-cancel" routerLink="/booking/seat-selection" (click)="scrollToTop()">Back</button>
+    <button class="btn-confirm" (click)="processPurchase()" [disabled]="isProcessing">
+      {{ isProcessing ? 'Processing...' : 'Confirm & Pay' }}
+    </button>
+  </div>
+</div>

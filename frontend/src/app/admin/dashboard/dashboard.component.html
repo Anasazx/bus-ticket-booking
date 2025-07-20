@@ -1,0 +1,78 @@
+<div class="dashboard-container p-4">
+    <div class="row mb-4">
+      <div class="col-12">
+        <h2 class="fw-bold">Dashboard Overview</h2>
+        <p class="text-muted">Welcome back! Here's what's happening today.</p>
+      </div>
+    </div>
+  
+    <!-- Stats Cards -->
+    <div class="row g-4 mb-4">
+      @for (stat of stats; track stat.label) {
+        <div class="col-md-3 col-sm-6">
+          <div class="card stat-card h-100 border-0 shadow-sm">
+            <div class="card-body">
+              <div class="d-flex align-items-center">
+                <div class="stat-icon {{stat.color}} text-white rounded-circle p-3 me-3">
+                  <i class="bi {{stat.icon}} fs-4"></i>
+                </div>
+                <div>
+                  <h5 class="mb-0 fw-bold">{{stat.value}}</h5>
+                  <p class="text-muted mb-0 small">{{stat.label}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  
+    <!-- Recent Trips -->
+    <div class="row">
+      <div class="col-12">
+        <div class="card border-0 shadow-sm">
+          <div class="card-header bg-white border-0">
+            <h5 class="fw-bold mb-0">Recent Trips</h5>
+          </div>
+          <div class="card-body p-0">
+            <div class="table-responsive">
+              <table class="table table-hover mb-0">
+                <thead class="table-light">
+                  <tr>
+                    <th class="ps-4">Trip ID</th>
+                    <th>Route</th>
+                    <th>Departure</th>
+                    <th>Status</th>
+                    <th class="text-end pe-4">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (trip of recentTrips; track trip.id) {
+                    <tr>
+                      <td class="ps-4">{{trip.id}}</td>
+                      <td>{{trip.route}}</td>
+                      <td>{{trip.departure | date:'mediumDate'}}</td>
+                      <td>
+                        <span class="badge" 
+                              [ngClass]="{
+                                'bg-success': trip.status === 'Active',
+                                'bg-secondary': trip.status === 'Completed'
+                              }">
+                          {{trip.status}}
+                        </span>
+                      </td>
+                      <td class="text-end pe-4">
+                        <button class="btn btn-sm btn-outline-primary">
+                          <i class="bi bi-eye"></i> View
+                        </button>
+                      </td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

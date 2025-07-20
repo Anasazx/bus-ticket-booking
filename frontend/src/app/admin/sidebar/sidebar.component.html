@@ -1,0 +1,80 @@
+<aside class="sidebar" [class.collapsed]="isCollapsed">
+    <div class="sidebar-header">
+        <h2 class="sidebar-logo">TransitPro</h2>
+        <button class="sidebar-toggle" (click)="emitToggle()">
+          <i class="bi" [class.bi-chevron-double-left]="!isCollapsed" 
+                       [class.bi-chevron-double-right]="isCollapsed"></i>
+        </button>
+      </div>
+
+    <!-- Sidebar Header -->
+    <!-- <div class="sidebar-header">
+      <h2 class="sidebar-logo">TransitPro</h2>
+      <button class="sidebar-toggle" (click)="toggleSidebar()">
+        <i class="bi" [class.bi-chevron-double-left]="!isCollapsed" 
+                     [class.bi-chevron-double-right]="isCollapsed"></i>
+      </button>
+    </div> -->
+  
+    <!-- Navigation Menu -->
+
+    <nav class="sidebar-nav">
+      <ul class="nav-list">
+        <li class="nav-item">
+          <a routerLink="/admin/dashboard" class="nav-link" routerLinkActive="active">
+            <i class="bi bi-speedometer2 nav-icon"></i>
+            <span class="nav-text">Dashboard</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/admin/travel-management" class="nav-link" routerLinkActive="active">
+            <i class="bi bi-bus-front nav-icon"></i>
+            <span class="nav-text">Travel Management</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/admin/addtravel" class="nav-link" routerLinkActive="active">
+            <i class="bi bi-signpost-split nav-icon"></i>
+            <span class="nav-text">Add New Trip</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/admin/schedule" class="nav-link" routerLinkActive="active">
+            <i class="bi bi-calendar-week nav-icon"></i>
+            <span class="nav-text">Schedule</span>
+          </a>
+        </li>
+        <!-- <li class="nav-item">
+          <a routerLink="/admin/drivers" class="nav-link" routerLinkActive="active">
+            <i class="bi bi-people nav-icon"></i>
+            <span class="nav-text">Drivers</span>
+          </a>
+        </li> -->
+        <li class="nav-item">
+          <a routerLink="/admin/reports" class="nav-link" routerLinkActive="active">
+            <i class="bi bi-graph-up nav-icon"></i>
+            <span class="nav-text">Reports</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+
+
+
+  
+    <!-- Sidebar Footer -->
+    <div class="sidebar-footer">
+      <div class="user-profile">
+        <i class="bi bi-person-circle user-avatar"></i>
+        <div class="user-info">
+          <div class="user-name">{{ userName || 'Guest' }}</div>
+          <div class="user-role">System Admin</div>
+        </div>
+      </div>
+      <button class="logout-btn">
+        <i class="bi bi-box-arrow-right"></i>
+        <span class="logout-text" routerLink="/" (click)="logout()">Logout</span>
+      </button>
+    </div>
+  </aside>

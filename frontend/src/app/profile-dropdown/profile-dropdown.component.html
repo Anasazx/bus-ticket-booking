@@ -1,0 +1,37 @@
+<div class="dropdown profile-dropdown" [class.show]="isOpen">
+    <button 
+      (click)="toggleDropdown()" 
+      class="btn d-flex align-items-center gap-2 border-0 bg-transparent shadow-none"
+      [attr.aria-expanded]="isOpen"
+      aria-label="Toggle profile menu"
+    >
+      <img 
+        src="userIcon.jpg" 
+        alt="Profile avatar" 
+        class="rounded-circle" 
+        width="40" 
+        height="40"
+      />
+
+      <span class="fw-semibold text-dark text-truncate d-inline-block" style="max-width: 120px;">{{ userName || 'Guest' }}</span> 
+      <i class="bi bi-chevron-down text-secondary"></i>
+      
+    </button>
+
+        <ul class="dropdown-menu dropdown-menu-end mt-2 shadow-sm" [class.show]="isOpen">
+          
+        <li>
+          <a routerLink="/ticket" class="dropdown-item">
+            <i class="bi bi-ticket-perforated-fill me-2" ></i> My Tickets
+          </a>
+        </li>
+
+        <li><hr class="dropdown-divider"></li>
+        <li><a routerLink="/profile" class="dropdown-item"><i class="bi bi-person-circle me-2"></i> My Profile</a></li>
+        <li><a routerLink="/settings" class="dropdown-item"><i class="bi bi-gear me-2"></i> Settings</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a (click)="logout()" routerLink="/" class="dropdown-item text-danger"><i class="bi bi-box-arrow-right me-2"></i> Logout</a></li>
+        </ul>
+    
+  </div>
+  

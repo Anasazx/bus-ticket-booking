@@ -1,0 +1,9 @@
+.profile-dropdown {
+    position: relative;
+  }
+  
+  .profile-dropdown .dropdown-menu {
+    min-width: 12rem;
+    border-radius: 0.5rem;
+  }
+  

@@ -1,0 +1,224 @@
+<div class="container py-4">
+    <h1 class="text-center mb-4">Available Bus Travels</h1>
+  
+    <!-- Filters Section -->
+    <!-- <div class="card mb-4 shadow-sm">
+      <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">Filter Options</h5>
+      </div>
+      <div class="card-body">
+        <div class="row g-3">
+          <div class="col-md-4">
+            <label class="form-label">Max Price (DT)</label>
+            <input type="range" class="form-range" min="10" max="100" step="5" 
+                   [(ngModel)]="filters.maxPrice" (input)="applyFilters()">
+            <span class="fw-bold">{{ filters.maxPrice }} DT</span>
+          </div>
+          
+          <div class="col-md-4">
+            <label class="form-label">Bus Type</label>
+            <select class="form-select" [(ngModel)]="filters.busType" (change)="applyFilters()">
+              <option value="">All Types</option>
+              <option value="Standard">Standard</option>
+              <option value="Premium">Premium</option>
+              <option value="Luxury">Luxury</option>
+            </select>
+          </div>
+
+
+          
+          <div class="col-md-4">
+            <label class="form-label">Departure After</label>
+            <input type="time" class="form-control" [(ngModel)]="filters.departureTime" 
+                   (change)="applyFilters()">
+          </div>
+          
+          <div class="col-12">
+            <button class="btn btn-outline-secondary" (click)="resetFilters()">
+              Reset Filters
+            </button>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  
+    <!-- Travel List -->
+    <div class="row g-4">
+      @for (travel of travels; track travel._id) {
+        <div class="col-md-6">
+          <div class="card h-100 shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+              <h5 class="mb-0">{{ travel.departure }} → {{ travel.destination }}</h5>
+              <span class="badge" 
+                    [ngClass]="{
+                      'bg-secondary': travel.busType === 'Standard',
+                      'bg-primary': travel.busType === 'Premium',
+                      'bg-success': travel.busType === 'Luxury'
+                    }">
+                {{ travel.busType }}
+              </span>
+            </div>
+            <div class="card-body">
+
+
+
+              <div class="d-flex justify-content-between mb-3">
+                <div>
+                  <i class="bi bi-calendar me-2"></i>
+                  {{ travel.date | date: 'd MMM y' }}
+                </div>
+                <div class="fw-bold text-primary">
+                  {{ travel.price }} DT
+                </div>
+              </div>
+
+
+
+
+
+              <div class="d-flex justify-content-between mb-3">
+                <div>
+                  <i class="bi bi-clock me-2"></i>
+                  {{ travel.departureTime }} 
+                </div>
+                
+              </div>
+              
+              <div class="mb-3">
+                <span class="badge bg-info me-2" *ngFor="let amenity of travel.amenities">
+                  {{ amenity }}
+                </span>
+              </div>
+              
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <span class="text-success" *ngIf="travel.seatsAvailable > 10">
+                    <i class="bi bi-check-circle-fill me-1"></i> Many seats available
+                  </span>
+                  <span class="text-warning" *ngIf="travel.seatsAvailable <= 10 && travel.seatsAvailable > 3">
+                    <i class="bi bi-exclamation-triangle-fill me-1"></i> Only {{ travel.seatsAvailable }} left
+                  </span>
+                  <span class="text-danger" *ngIf="travel.seatsAvailable <= 3 && travel.seatsAvailable > 0">
+                    <i class="bi bi-exclamation-triangle-fill me-1"></i> Last {{ travel.seatsAvailable }} seats!
+                  </span>
+                  <span class="text-body-tertiary" *ngIf="travel.seatsAvailable <=0">
+                    <i class="bi bi-exclamation-triangle-fill me-1"></i> Sold out!
+                  </span>
+                </div>
+                
+                <div>
+                  <button 
+                          class="btn btn-sm btn-success  " 
+                          (click)="showTravelDetails(travel)"
+                          *ngIf="travel.seatsAvailable>0"
+                          >
+                          Book Now
+                  </button>
+                  <!-- <button class="btn btn-sm btn-success  " 
+                          (click)="bookTravel(travel)"
+                          (click)="scrollToTop()"
+                          [disabled]="travel.seatsAvailable === 0"
+                          routerLink="/booking/seat-selection">
+                    Book Now
+                  </button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      } @empty {
+        <div class="col-12">
+          <div class="alert alert-warning text-center">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>
+            No travels match your filters. Please try different criteria.
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+  
+  <!-- Travel Details Modal -->
+  @if (showDetailsModal && selectedTravel) {
+    <div class="modal fade show d-block" tabindex="-1" style="background-color: rgba(0,0,0,0.5)">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-white">
+            <h5 class="modal-title">
+              {{ selectedTravel.departure }} → {{ selectedTravel.destination }}
+            </h5>
+            <button type="button" class="btn-close btn-close-white" 
+                    (click)="closeModal()"></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6">
+                <h6>Travel Details</h6>
+                <ul class="list-group mb-3">
+                  <li class="list-group-item d-flex justify-content-between">
+                    <span>Departure:</span>
+                    <span class="fw-bold">{{ selectedTravel.departureTime }}</span>
+                  </li>
+                  <!-- <li class="list-group-item d-flex justify-content-between">
+                    <span>Arrival:</span>
+                    <span class="fw-bold">{{ selectedTravel.arrivalTime }}</span>
+                  </li> -->
+                  <!-- <li class="list-group-item d-flex justify-content-between">
+                    <span>Duration:</span>
+                    <span class="fw-bold">
+                      {{ this._TravelService.calculateDuration(selectedTravel.departureTime, selectedTravel.arrivalTime) }}
+                    </span>
+                  </li> -->
+                  <li class="list-group-item d-flex justify-content-between">
+                    <span>Bus Type:</span>
+                    <span class="fw-bold">{{ selectedTravel.busType }}</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h6>Amenities</h6>
+                <div class="d-flex flex-wrap gap-2 mb-3">
+                  @for (amenity of selectedTravel.amenities; track amenity) {
+                    <span class="badge bg-info">{{ amenity }}</span>
+                  }
+                </div>
+                
+                <h6>Price & Availability</h6>
+                <div class="card bg-light">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div>
+                        <h4 class="text-primary mb-0">{{ selectedTravel.price }} DT</h4>
+                        <small class="text-muted">per seat</small>
+                      </div>
+                      <div>
+                        <span class="badge" 
+                              [ngClass]="{
+                                'bg-success': selectedTravel.seatsAvailable > 10,
+                                'bg-warning': selectedTravel.seatsAvailable <= 10 && selectedTravel.seatsAvailable > 3,
+                                'bg-danger': selectedTravel.seatsAvailable <= 3
+                              }">
+                          {{ selectedTravel.seatsAvailable }} seats left
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeModal()">
+              Close
+            </button>
+            <button type="button" class="btn btn-primary" 
+                    (click)="bookTravel(selectedTravel)"
+                    (click)="scrollToTop()"
+                    [disabled]="selectedTravel.seatsAvailable === 0"
+                    routerLink="/booking/seat-selection">
+              Proceed to Booking
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }

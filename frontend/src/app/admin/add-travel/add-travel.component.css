@@ -1,0 +1,40 @@
+.add-travel-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .card-header {
+    padding: 1.5rem 1.5rem 0.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  .form-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+  }
+  
+  input.ng-invalid.ng-touched,
+  select.ng-invalid.ng-touched,
+  textarea.ng-invalid.ng-touched {
+    border-color: #dc3545;
+    background-color: rgba(220, 53, 69, 0.05);
+  }
+  
+  .btn:disabled {
+    opacity: 0.65;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .add-travel-container {
+      padding: 1rem !important;
+    }
+    
+    .card-header, .card-body {
+      padding: 1rem;
+    }
+  }

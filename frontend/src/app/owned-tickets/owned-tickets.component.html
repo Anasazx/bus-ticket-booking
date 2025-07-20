@@ -1,0 +1,137 @@
+<div class="tickets-container">
+  <div class="tickets-header">
+    <h1>My Tickets</h1>
+    <div class="filter-options">
+      <button 
+        *ngFor="let filter of filters"
+        [class.active]="currentFilter === filter"
+        (click)="setFilter(filter)"
+      >
+        {{ filter | titlecase }}
+      </button>
+    </div>
+  </div>
+
+
+
+  <app-loading message="Loading your tickets..." *ngIf="isLoading"></app-loading>
+
+  <div class="error-section" *ngIf="error && !isLoading">
+    <div class="error-icon">!</div>
+    <p>{{ error }}</p>
+    <button class="retry-btn" (click)="loadTickets()">Retry</button>
+  </div>
+
+  <div class="no-tickets" *ngIf="!isLoading && !error && filteredTickets.length === 0">
+    <img src="no-ticket.svg" alt="No tickets">
+    <h3>No tickets found</h3>
+    <p>You don't have any {{ currentFilter }} tickets yet.</p>
+    <button class="primary-btn" routerLink="/">Book a Ticket</button>
+  </div>
+
+
+  <div class="tickets-list" *ngIf="!isLoading && !error && filteredTickets.length > 0">
+
+      <div class="ticket-card" *ngFor="let ticket of filteredTickets">
+        <div class="ticket-header">
+        <span class="ticket-id">#{{ ticket.id }}</span>
+
+      <span
+        class="ticket-status"
+        [ngClass]="{
+          'cancelled': ticket.isCancelled,
+          'past': !ticket.isCancelled && !isUpcoming(ticket.date, ticket.departureTime),
+          'upcoming': !ticket.isCancelled && isUpcoming(ticket.date, ticket.departureTime)
+        }"
+      >
+        <ng-container *ngIf="ticket.isCancelled; else notCancelled">
+          Cancelled
+        </ng-container>
+        <ng-template #notCancelled>
+          <ng-container *ngIf="!isUpcoming(ticket.date, ticket.departureTime); else upcoming">
+            Past
+          </ng-container>
+          <ng-template #upcoming>
+            Upcoming
+          </ng-template>
+        </ng-template>
+      </span>
+        
+      </div>
+      
+      <div class="ticket-body">
+        <div class="route-info">
+          <div class="departure">
+            <h3>{{ ticket.departure }}</h3>
+            <p>{{ ticket.departureTime }}</p>
+            <p>{{ ticket.date | date: 'MMM d, y' }}</p>
+          </div>
+
+          <div class="journey-line">
+            <div class="circle start"></div>
+            <div class="line"></div>
+            <div class="circle end"></div>
+          </div>
+
+          <div class="arrival">
+            <h3>{{ ticket.destination }}</h3>
+            <p>{{ ticket.date | date: 'MMM d, y' }}</p>
+          </div>
+        </div>
+
+        <div class="ticket-details">
+          <div class="detail-item">
+            <span class="detail-label">Bus:</span>
+            <span class="detail-value">{{ ticket.id }} </span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Price:</span>
+            <span class="detail-value">TND {{ ticket.price | number:'1.0-0' }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Booking Date:</span>
+            <span class="detail-value">{{ ticket.date | date: 'medium' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="ticket-actions">
+        <button class="secondary-btn" >View Details</button>
+        <button 
+          class="danger-btn" 
+          *ngIf="!ticket.isCancelled && isUpcoming(ticket.date, ticket.departureTime)"
+          (click)="openCancelConfirm(ticket.id)"
+        >
+          Cancel Ticket
+        </button>
+        <button class="primary-btn" *ngIf="true" disabled>Download Invoice</button>
+        <button class="primary-btn" *ngIf="!ticket.isCancelled && isUpcoming(ticket.date, ticket.departureTime)" (click)="downloadTicket(ticket)">Download Ticket</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade show" style="display: block;" *ngIf="showCancelConfirm" tabindex="-1" aria-modal="true" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Confirm Cancellation</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="closeCancelConfirm()"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to cancel this ticket?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" (click)="confirmCancel()">Yes, Cancel</button>
+        <button type="button" class="btn btn-secondary" (click)="closeCancelConfirm()">No, Keep Ticket</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Backdrop -->
+<div class="modal-backdrop fade show" *ngIf="showCancelConfirm"></div>

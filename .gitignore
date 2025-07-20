@@ -1,0 +1,39 @@
+# Ignore node modules and build artifacts
+**/node_modules/
+**/dist/
+**/.angular/
+**/.turbo/
+
+# Environment variables
+**/.env
+**/.env.local
+**/.env.development
+**/.env.production
+
+# Logs
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+**/pnpm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs/editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Coverage reports
+**/coverage/
+
+# Angular specific
+/frontend/.angular/cache/
+frontend/.angular/*
+
+# Backend specific
+/backend/uploads/

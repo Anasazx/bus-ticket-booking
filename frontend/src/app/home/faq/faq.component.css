@@ -1,0 +1,45 @@
+/* Custom Styles */
+.faq-section {
+  background-color: #f8f9fa;
+}
+
+.section-underline {
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #e30613, #ffd700);
+}
+
+.custom-accordion .accordion-button {
+  transition: all 0.2s ease;
+}
+
+.custom-accordion .accordion-button:not(.collapsed) {
+  background-color: white;
+  color: #e30613;
+  box-shadow: none;
+}
+
+.custom-accordion .accordion-button:focus {
+  box-shadow: none;
+  border-color: transparent;
+}
+
+.custom-accordion .accordion-body {
+  background-color: #fefefe;
+}
+
+.py-6 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (max-width: 768px) {
+  .py-6 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}

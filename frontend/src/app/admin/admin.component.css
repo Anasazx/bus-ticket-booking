@@ -1,0 +1,47 @@
+  .container {
+  display: flex;
+  min-height: 100vh;
+  margin-left: 0px;
+  padding-left: 0px;
+  margin-right: 0px;
+  padding-right: 0px;
+  min-width: fit-content;
+  width: 100vw;
+
+
+  align-items: stretch;
+
+
+
+
+
+
+  /* min-height: 100vh; */
+
+
+
+}
+
+
+/* .sidebar {
+  transition: width 0.3s;
+  overflow: hidden;
+  height: 100vh;
+
+  min-height: 100vh;
+
+} */
+
+
+
+
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  min-width: 0;
+}
+/*  */
+
+
+

@@ -1,0 +1,66 @@
+<div class="routes-container">
+    <div class="routes-header">
+      <h1>Bus Routes</h1>
+      <p>Explore our network of routes serving the community</p>
+    </div>
+  
+    <div class="routes-content">
+      <div class="routes-list">
+        <div class="search-filter">
+          <input type="text" placeholder="Search routes..." class="search-input">
+          <select class="filter-select">
+            <option value="">All Routes</option>
+            <option value="express">Express Routes</option>
+            <option value="local">Local Routes</option>
+            <option value="night">Night Service</option>
+          </select>
+        </div>
+  
+        <div class="route-cards">
+          <div 
+            *ngFor="let route of routes" 
+            class="route-card"
+            [class.selected]="selectedRoute?.id === route.id"
+            (click)="showRouteDetails(route)"
+          >
+            <div class="route-name">{{ route.name }}</div>
+            <div class="route-description">{{ route.description }}</div>
+            <div class="route-schedule">{{ route.schedule }}</div>
+            <div class="route-fare">{{ route.fare }}</div>
+          </div>
+        </div>
+      </div>
+  
+      <div class="route-details" *ngIf="selectedRoute">
+        <button class="close-button" (click)="clearSelection()">×</button>
+        <h2>{{ selectedRoute.name }}</h2>
+        
+        <div class="detail-section">
+          <h3>Route Description</h3>
+          <p>{{ selectedRoute.description }}</p>
+        </div>
+  
+        <div class="detail-section">
+          <h3>Schedule</h3>
+          <p>{{ selectedRoute.schedule }}</p>
+        </div>
+  
+        <div class="detail-section">
+          <h3>Fare Information</h3>
+          <p>{{ selectedRoute.fare }}</p>
+        </div>
+  
+        <div class="detail-section">
+          <h3>Stops</h3>
+          <ul class="stops-list">
+            <li *ngFor="let stop of selectedRoute.stops">{{ stop }}</li>
+          </ul>
+        </div>
+  
+        <div class="action-buttons">
+          <button class="btn-primary">View on Map</button>
+          <button class="btn-secondary">Download Schedule</button>
+        </div>
+      </div>
+    </div>
+  </div>

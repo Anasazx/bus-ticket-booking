@@ -1,0 +1,267 @@
+/* confirm-booking.component.css */
+.confirmation-dialog {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    animation: fadeIn 0.3s ease-out;
+  }
+  
+  .confirmation-dialog h3 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+    text-align: center;
+    border-bottom: 2px solid #f1f3f5;
+    padding-bottom: 0.8rem;
+  }
+  
+  /* Travel Information Section */
+  .travel-info-section {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid #3b82f6;
+  }
+  
+  .travel-info-section h4 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .travel-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  
+  .info-item {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .info-label {
+    font-weight: 600;
+    color: #64748b;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .info-value {
+    color: #1e293b;
+    font-size: 1rem;
+  }
+  
+  /* Booking Summary */
+  .booking-summary {
+    background: #f1f5f9;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .booking-summary h4 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .booking-summary p {
+    margin: 0.5rem 0;
+    color: #334155;
+  }
+  
+  .booking-summary .total-price {
+    font-weight: bold;
+    color: #1e40af;
+    font-size: 1.1rem;
+  }
+  
+  /* Form Styles */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #475569;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+  }
+  
+  /* Action Buttons */
+  .action-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .btn-cancel,
+  .btn-confirm {
+    padding: 0.8rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+    font-size: 1rem;
+  }
+  
+  .btn-cancel {
+    background: #f1f5f9;
+    color: #64748b;
+  }
+  
+  .btn-cancel:hover {
+    background: #e2e8f0;
+  }
+  
+  .btn-confirm {
+    background: #3b82f6;
+    color: white;
+  }
+  
+  .btn-confirm:hover {
+    background: #2563eb;
+  }
+  
+  .btn-confirm:disabled {
+    background: #cbd5e1;
+    cursor: not-allowed;
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 640px) {
+    .confirmation-dialog {
+      padding: 1.5rem;
+      margin: 1rem;
+    }
+    
+    .travel-info-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .action-buttons {
+      flex-direction: column;
+    }
+    
+    .btn-cancel,
+    .btn-confirm {
+      width: 100%;
+    }
+  }
+
+
+
+
+
+  /*  */
+
+
+  /* .booking-summary {
+    max-width: 340px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin: auto;
+    color: #333;
+    font-family: "Segoe UI", sans-serif;
+  }
+  
+  .booking-summary h4 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  } */
+  
+  .seat-selector {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .seat-selector span {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  .counter {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .counter button {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 10px;
+    background: #e0e0e0;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .counter button:hover:not(:disabled) {
+    background: #c5c5c5;
+  }
+  
+  .counter button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .counter span {
+    font-size: 1.1rem;
+    font-weight: 500;
+    min-width: 28px;
+    text-align: center;
+  }
+  
+  .total {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+  

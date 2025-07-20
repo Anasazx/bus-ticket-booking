@@ -1,0 +1,69 @@
+<div class="tickets-container">
+    <div class="tickets-header">
+      <h1>Just Purchased Ticket</h1>
+      <button class="primary-btn alt-btn" routerLink="/ticket">Show All Tickets</button>
+
+
+    </div>
+
+
+  
+    <div class="ticket-card" *ngIf="ticket && travelInfo">
+      <div class="ticket-header">
+        <span class="ticket-id">#{{ ticket._id }}</span>
+        <span class="ticket-status">
+          Confirmed
+        </span>
+      </div>
+  
+      <div class="ticket-body">
+        <div class="route-info">
+          <div class="departure">
+            <h3>{{ travelInfo.departure }}</h3>
+            <p>{{ travelInfo.departureTime }}</p>
+            <p>{{ travelInfo.date | date: 'MMM d, y' }}</p>
+          </div>
+
+
+  
+          <div class="journey-line">
+            <div class="circle start"></div>
+            <div class="line"></div>
+            <div class="circle end"></div>
+          </div>
+  
+          <div class="arrival">
+            <h3>{{ travelInfo.destination }}</h3>
+            <p style="visibility: hidden;">placeholder</p>
+            <p style="visibility: hidden;">placeholder</p>
+          </div>
+        </div>
+  
+        <div class="ticket-details">
+          <div class="detail-item">
+            <span class="detail-label">Bus:</span>
+            <span class="detail-value">{{ travelInfo._id  }} ({{ travelInfo.busType }})</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Price:</span>
+            <span class="detail-value">TND {{ travelInfo.price | number:'1.0-0' }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Booking Date:</span>
+            <span class="detail-value">{{ travelInfo.date | date: 'medium' }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Ticket owner:</span>
+            <span class="detail-value">{{ choosenName }}</span>
+          </div>
+        </div>
+      </div>
+  
+      <div class="ticket-actions">
+        <button class="secondary-btn" (click)="viewTicketDetails(ticket.travelId)">View Details</button>
+        <button class="primary-btn" *ngIf="true">Download Ticket</button>
+        <button class="primary-btn" *ngIf="true" disabled>Download Invoice</button>
+      </div>
+    </div>
+  </div>
+  

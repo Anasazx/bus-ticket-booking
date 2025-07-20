@@ -1,0 +1,15 @@
+
+
+<div class="container">
+  <aside class="sidebar">
+    <app-sidebar 
+    [isCollapsed]="isCollapsed" 
+    (toggle)="toggleSidebar()">
+    </app-sidebar>
+  </aside>
+
+  <main class="main-content">
+    <!-- Main page content here -->
+    <router-outlet></router-outlet>
+  </main>
+</div>

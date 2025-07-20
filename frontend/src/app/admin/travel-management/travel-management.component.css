@@ -1,0 +1,67 @@
+.travel-management-container {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  
+  flex-grow: 1; 
+  padding: 20px;
+  min-height: 100vh;  
+
+  /* no width 100vw! no margin-left/right hacks */
+  box-sizing: border-box;
+}
+
+  
+  
+
+  
+  .header h2 {
+    font-size: 1.75rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .table th {
+    font-weight: 600;
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #6c757d;
+  }
+  
+  .badge {
+    padding: 0.35em 0.65em;
+    font-size: 0.75em;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  
+  .btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .btn-outline-primary:hover {
+    background-color: rgba(13, 110, 253, 0.1);
+  }
+  
+  .btn-outline-secondary:hover {
+    background-color: rgba(108, 117, 125, 0.1);
+  }
+  
+  @media (max-width: 768px) {
+    .card-body .col-md-6,
+    .card-body .col-md-4 {
+      margin-bottom: 1rem;
+    }
+    
+    .table-responsive {
+      border: 0;
+    }
+    
+    .btn-sm {
+      padding: 0.2rem 0.4rem;
+    }
+    
+    .pagination {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
