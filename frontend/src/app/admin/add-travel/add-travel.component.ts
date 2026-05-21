@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { TravelService, Travel } from '../../services/travel.service';
+import { TravelService } from '../../services/travel.service';
 import { SharedService } from '../../services/shared.service';
+import { Travel } from '../../models/travel.model';
 
 @Component({
   selector: 'app-add-travel',

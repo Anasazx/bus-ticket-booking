@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TicketService, Ticket } from '../services/ticket.service';
-import { TravelService, Travel } from '../services/travel.service';
+import { TicketService } from '../services/ticket.service';
+import { TravelService } from '../services/travel.service';
 import { SharedService } from '../services/shared.service';
 import { ActivatedRoute } from '@angular/router';
+import { Travel } from '../models/travel.model';
+import { Ticket } from '../models/ticket.model';
 
 
 @Component({

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TravelService, Travel } from '../../services/travel.service';
+import { TravelService } from '../../services/travel.service';
+import { Travel } from '../../models/travel.model';
 // import { SharedService } from '../../shared.service';
 // import { Travel } from '../../shared.service';
 

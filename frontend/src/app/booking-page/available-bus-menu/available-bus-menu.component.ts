@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterLink, Router, RouterModule, ActivatedRoute } from '@angular/router';
-import { TravelService, Travel } from '../../services/travel.service';
+import { TravelService } from '../../services/travel.service';
 import { SelectionService } from '../../services/selection.service';
+import { Travel } from '../../models/travel.model';
 
 @Component({
   selector: 'app-available-bus-menu',

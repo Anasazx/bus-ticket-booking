@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TicketService, Ticket, ticketInfo } from '../services/ticket.service';
+import { TicketService } from '../services/ticket.service';
 import { LoadingComponent } from "../loading/loading.component";
 import { TravelService  } from '../services/travel.service';
 import { forkJoin, map } from 'rxjs';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import { ticketInfo } from '../models/ticketInfo.model';
+import { Ticket } from '../models/ticket.model';
 
 
   

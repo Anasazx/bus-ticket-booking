@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { TravelService, Travel } from '../../services/travel.service';
+import { TravelService } from '../../services/travel.service';
 import { AuthService } from '../../services/auth.service';
-import { TicketService, Ticket } from '../../services/ticket.service';
+import { TicketService } from '../../services/ticket.service';
 import { UserService } from '../../services/user.service';
+import { Ticket } from '../../models/ticket.model';
+import { Travel } from '../../models/travel.model';
 
 @Component({
   selector: 'app-confirm-booking',

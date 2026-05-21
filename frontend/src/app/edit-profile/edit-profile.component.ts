@@ -4,9 +4,10 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UserService, User } from '../services/user.service';
+import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
 import { CommonModule } from '@angular/common';
+import { User } from '../models/user.model';
 
 @Component({
   selector: 'app-edit-profile',
