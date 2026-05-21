@@ -2,6 +2,10 @@
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.3.
 
+## Home Page
+
+![Home Page](imagesForReadmeFile/img1.png)
+
 ## Development server
 
 To start a local development server, run:
