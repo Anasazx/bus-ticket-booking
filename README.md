@@ -2,6 +2,11 @@
 
 A full-stack web application for browsing, booking, and managing bus tickets. Built with Angular on the frontend and Node.js/Express on the backend.
 
+## Home Page
+
+![Home Page](imagesForReadmeFile/img1.png)
+
+
 ## Features
 
 - Search available bus routes
